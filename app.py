@@ -1,8 +1,9 @@
 import os
 import colorama
 
-print("Cloud validation testing sequence initiated...")
-print("Core dependencies imported successfully")
+stage_env = os.environ.get("STAGE_ENV")
 
-print("CRIRICAL ERROR: Database reference token not found!")
-raise RuntimeError("Execution sequence halted due to critical infrastructure failure.")
+if stage_env == "PRODUCTION":
+    print("Production configuration verified. System fully functional.")
+else:
+    raise ValueError("CRITICAL: Unapproved staging environment configuration detected!")

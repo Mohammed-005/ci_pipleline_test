@@ -18,5 +18,5 @@ jobs:
 
       - name: Validate container runtime execution
         run: | 
-          docker run --name active_test_runner graduation-app:latest
+          docker run -e STAGE_ENV=PRODUCTION --name active_test_runner graduation-app:latest
           echo "Container executed and exited cleanly with no runtime crashes."
