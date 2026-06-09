@@ -1,20 +1,20 @@
-name: Core verification Pipeline
+name: Docker compilation pipeline
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  run-validation-checks:
-    
+  build-and-tast-container:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code Base
+      - name: Checkout repository files
         uses: actions/checkout@v4
 
-      - name: Execute System Diagonosis
+      - name: Compile application image
         run: |
-          echo "Cloud virtual machine is waking up"
-          echo "Triggered by developer: ${{ github.actor }}"
-          echo "Pipeline execution successful."
+          echo "Commencing automated docker build sequence"
+          docker build -t test-automation-image:latest
+          echo "Container image compiled successfully with zero errors."
