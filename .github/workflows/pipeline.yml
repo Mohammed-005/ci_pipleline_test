@@ -1,11 +1,11 @@
-name: Docker compilation pipeline
+name: Docker compilation & validation pipeline
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build-and-tast-container:
+  build-and-validate:
 
     runs-on: ubuntu-latest
 
@@ -13,8 +13,10 @@ jobs:
       - name: Checkout repository files
         uses: actions/checkout@v4
 
-      - name: Compile application image
-        run: |
-          echo "Commencing automated docker build sequence"
-          docker build -t test-automation-image:latest .
-          echo "Container image compiled successfully with zero errors."
+      - name: Compile the local image
+        run: docker build -t graduation-app:latest .
+
+      - name: Validate container runtime execution
+        run: | 
+          docker run --name active_test_runner graduation-app:latest
+          echo "Container executed and exited cleanly with no runtime crashes."
