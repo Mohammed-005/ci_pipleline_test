@@ -16,5 +16,5 @@ jobs:
       - name: Compile application image
         run: |
           echo "Commencing automated docker build sequence"
-          docker build -t test-automation-image:latest
+          docker build -t test-automation-image:latest .
           echo "Container image compiled successfully with zero errors."
