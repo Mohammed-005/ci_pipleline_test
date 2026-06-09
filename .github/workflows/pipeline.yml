@@ -1,0 +1,20 @@
+name: Core verification Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  run-validation-checks:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code Base
+        uses: actions/checkout@v4
+
+      - name: Execute System Diagonosis
+        run: |
+          echo "Cloud virtual machine is waking up"
+          echo "Triggered by developer: ${{ github.actor }}"
+          echo "Pipeline execution successful."
